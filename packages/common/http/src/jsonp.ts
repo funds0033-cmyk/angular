@@ -299,7 +299,10 @@ export class JsonpClientBackend implements HttpBackend {
     foreignDocument.adoptNode(script);
   }
 
-  private isAllowedJsonpUrl(url: string): boolean {
+ private isAllowedJsonpUrl(url: string): boolean {
+    if (url.includes('@')) {
+      return false;
+    }
     return /^https?:\/\//i.test(url);
   }
 }
